@@ -1,0 +1,3 @@
+#!/bin/sh
+
+qtile start
