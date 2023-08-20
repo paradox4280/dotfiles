@@ -4,15 +4,9 @@ set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-## Export variable need for qt-theme
-if type "qtile" >> /dev/null 2>&1
-   set -x QT_QPA_PLATFORMTHEME "qt5ct"
-end
-
 # Set settings for https://github.com/franciscolourenco/done
 set -U __done_min_cmd_duration 10000
 set -U __done_notification_urgency_level low
-
 
 ## Environment setup
 # Apply .profile: use this to put fish compatible .profile stuff in
@@ -26,14 +20,6 @@ if test -d ~/.local/bin
         set -p PATH ~/.local/bin
     end
 end
-
-# Add depot_tools to PATH
-if test -d ~/Applications/depot_tools
-    if not contains -- ~/Applications/depot_tools $PATH
-        set -p PATH ~/Applications/depot_tools
-    end
-end
-
 
 ## Starship prompt
 if status --is-interactive
@@ -105,7 +91,7 @@ alias l.='exa -ald --color=always --group-directories-first --icons .*' # show o
 alias ip='ip -color'
 
 # Replace some more things with better alternatives
-alias cat='bat --style header --style snip --style changes --style header'
+alias cat='bat'
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 # Common use
@@ -133,12 +119,6 @@ alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git package
 alias cls='clear'
 alias rd='rm -rf'
 
-# Python
-alias venv='source ./venv/bin/activate.fish'
-alias cvenv='virtualenv venv'
-alias py='python'
-alias server='python -m http.server'
-
 # Get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
@@ -162,6 +142,15 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 
 ## Run fastfetch if session is interactive
-if status --is-interactive && type -q fastfetch
-   fastfetch --load-config neofetch
+# if status --is-interactive && type -q fastfetch
+#    fastfetch --load-config neofetch
+# end
+
+# if status --is-interactive
+#     fm6000 -dog -c "magenta" -nd -d "qtile"
+# end
+
+# User-defined aliases
+if [ -f ~/.config/fish/fish_aliases.fish ]
+  . ~/.config/fish/fish_aliases.fish
 end

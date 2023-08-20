@@ -1,0 +1,11 @@
+configuration {
+    display-drun: "";
+    display-windows: "Windows";
+    drun-display-format: "{icon} {name}";
+    font: "HurimtNerdFontMono bold 12";
+    modi: "window,run,drun";
+    show-icons: true;
+    icon-theme: "Gruvbox-Plus-Dark";
+}
+
+@theme "gruvbox"

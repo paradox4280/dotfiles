@@ -1,14 +1,21 @@
 " Map escape to jj
 imap jj <Esc>
 
+" TODO: Pick a leader key
+" let mapleader = " "
+
 " Don't try to be vi compatible
 set nocompatible
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" TODO: Load plugins here (pathogen or vundle)
+" TODO: Load plugins here (pathogen, vundle or vim-plug)
 call plug#begin('~/.vim/plugged')
+
+Plug 'morhetz/gruvbox'
+
+Plug 'lilydjwg/colorizer'
 
 Plug 'preservim/nerdtree'
 
@@ -16,11 +23,21 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'tpope/vim-commentary'
 
+Plug 'wakatime/vim-wakatime'
+
+Plug 'ryanoasis/vim-devicons'
+
 Plug 'vim-airline/vim-airline'
+
+Plug 'vim-airline/vim-airline-themes'
 
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 call plug#end()
+
+" Comment line ctrl + /
+nmap <C-_> <Plug>CommentaryLine
+vmap <C-_> <Plug>CommentaryLine<CR>gv
 
 " NerdTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -31,17 +48,17 @@ nnoremap <C-f> :NERDTreeFind<CR>
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" Vim airline
-let g:airline_theme = 'catppuccin_mocha'
+" Show hidden files in NerdTree
+let NERDTreeShowHidden=1
+
+" Air-line
+let g:airline_powerline_fonts = 1
 
 " Turn on syntax highlighting
 syntax on
 
 " For plugins to load correctly
 filetype plugin indent on
-
-" TODO: Pick a leader key
-" let mapleader = ","
 
 " Security
 set modelines=0
@@ -70,6 +87,10 @@ set visualbell
 
 " Encoding
 set encoding=utf-8
+
+" Case insensitive search
+set ignorecase
+set smartcase
 
 " Whitespace
 set nowrap
@@ -109,8 +130,6 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
 
-" Textmate holdouts
-
 " Formatting
 map <leader>q gqip
 
@@ -124,4 +143,11 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 " Theme
 set termguicolors
 set background=dark
-colorscheme catppuccin_mocha
+colorscheme gruvbox
+
+" Force airline to use colorscheme
+let g:airline_theme = 'base16_gruvbox_dark_hard'
+
+" Trasparent
+hi NonText ctermbg=none
+hi Normal guibg=NONE ctermbg=NONE
