@@ -3,7 +3,9 @@ from libqtile.lazy import lazy
 
 from .keys import mod, keys
 
-groups = [Group(f'{i+1}', label='') for i in range(6)]
+label = ''
+# label = ''
+groups = [Group(f'{i+1}', label=label) for i in range(6)]
 # groups = [Group(i) for i in '123456']
 
 for i in groups:

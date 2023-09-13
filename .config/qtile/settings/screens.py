@@ -1,24 +1,16 @@
 from libqtile import bar
 from libqtile.config import Screen
 
-from .widgets import init_widgets_list, gruvbox_widgets_list
+from .widget import widget
 
-bar_position = 'top'
-
-
-def top_init_screens() -> list:
-    return [Screen(top=bar.Bar(widgets=init_widgets_list(), size=30, opacity=1, margin=[10, 10, 0, 10]))]
-
-
-def bottom_init_screens() -> list:
-    return [Screen(bottom=bar.Bar(widgets=gruvbox_widgets_list(), size=30, opacity=0.85, margin=[0, 10, 5, 10]))]
+size = 30
+opacity = 0.85
+top_margin = [10, 10, 0, 10]
+bottom_margin = [0, 10, 5, 10]
 
 
-def _bar_position(position: str):
-    if position == 'top':
-        return top_init_screens()
-    else:
-        return bottom_init_screens()
+def init_screens(widget, size: int, opacity: float | int, margin: list | int) -> list:
+    return [Screen(top=bar.Bar(widgets=widget, size=size, opacity=opacity, margin=margin))]
 
 
-screens = _bar_position(bar_position)
+screens = init_screens(widget=widget, size=size, opacity=opacity, margin=top_margin)

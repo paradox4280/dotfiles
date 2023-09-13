@@ -24,6 +24,7 @@ keys = [
     Key([mod, 'shift'], 'v', lazy.spawn('clipmenu')),
     Key([mod, mod2], 'v', lazy.spawn('clipdel -d .*')),
     Key([mod, 'shift'], 'd', lazy.spawn('rofi -show drun')),
+    Key([mod2, 'shift'], 'l', lazy.spawn('betterlockscreen -l')),
     Key([alt, mod2], 's', lazy.spawn(f'{home}/scripts/system.sh')),
     Key([alt, mod2], 'v', lazy.spawn(f'{home}/scripts/start-virtual-machine.py')),
 

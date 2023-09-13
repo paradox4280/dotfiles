@@ -8,7 +8,7 @@ font_family = 'HurmitNerdFontMono'
 
 
 def load_colorscheme() -> dict:
-    theme = 'gruvbox'
+    theme = 'pokemon'
 
     theme_file = pathlib.Path(qtile_path) / f'settings/colorscheme/{theme}.json'
     if not theme_file.exists():
